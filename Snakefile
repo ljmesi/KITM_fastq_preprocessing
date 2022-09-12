@@ -52,7 +52,6 @@ print(f'Number of cores: {NUM_CORES}')
 # request the output files
 rule all:
     input:
-        # use the extracted 'name' values to build new filenames                
         PRETRIM_FASTQC,
         f"{OUTPUT}/pretrim/pretrim_seqkit_stats.tsv",
         R1_TRIMMED,
