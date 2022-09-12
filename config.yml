@@ -1,0 +1,8 @@
+# Directory where the input week directories are located
+input: "data/v15_16_18"
+
+# Directory where the output results will be written
+output: "results/v15_16_18"
+
+# The length to which the reads are trimmed to 
+max_read_length: 180
