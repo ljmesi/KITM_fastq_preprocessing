@@ -33,10 +33,12 @@ R2 = glob_wildcards(f"{PREFIX}/{{week}}/{{sample}}_L001_R2_001.fastq.gz")
 R1_TRIMMED: list[str] = [f"{OUTPUT}/trim/{w}/{n}_L001_R1_001.trim.fastq.gz" for w, n in zip(R1.week, R1.sample)]
 R2_TRIMMED: list[str] = [f"{OUTPUT}/trim/{w}/{n}_L001_R2_001.trim.fastq.gz" for w, n in zip(R2.week, R2.sample)]
 
+#### Maximum number cores available on this machine
+MAX_CORES = 92
 
 ################################################################
 
-def compute_num_cores(num_input_fastqs: int, max_num_cores: int = 92):
+def compute_num_cores(num_input_fastqs: int, max_num_cores: int = MAX_CORES):
     if num_input_fastqs <= max_num_cores:
         return num_input_fastqs
     else:
