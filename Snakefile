@@ -7,34 +7,31 @@ configfile: "config.yml"
 MAX_READ_LENGTH: str = config.get("max_read_length")
 print(f"Maximum length of the reads is '{MAX_READ_LENGTH}'")
 
-#### PREFIX
+#### Input directory
 PREFIX: str = config.get("input")
 print(f"Looking for fastq files under '{PREFIX}'")
 
 #### BATCH_NAME used for making sure that logs are stored in correct batch subdirectory
 BATCH_NAME: str = str(Path(PREFIX).parts[-1])
 
-R1 = glob_wildcards(f"{PREFIX}/{{week}}/{{sample}}_L001_R1_001.fastq.gz")
-R2 = glob_wildcards(f"{PREFIX}/{{week}}/{{sample}}_L001_R2_001.fastq.gz")
-
-FILES = glob_wildcards(f"{PREFIX}/{{week}}/{{sample}}.fastq.gz")
-
-#### OUTPUT
+#### OUTPUT directory
 OUTPUT: str = config.get("output")
 print(f"Results will go under '{OUTPUT}'")
 
-#### output files for fastp
-R1_TRIMMED: list[str] = [f"{OUTPUT}/trim/{w}/{n}_L001_R1_001.trim.fastq.gz" for w, n in zip(R1.week, R1.sample)]
-R2_TRIMMED: list[str] = [f"{OUTPUT}/trim/{w}/{n}_L001_R2_001.trim.fastq.gz" for w, n in zip(R2.week, R2.sample)]
-
+#### Input files for pretrim seqkit stats
+FILES = glob_wildcards(f"{PREFIX}/{{week}}/{{sample}}.fastq.gz")
 WEEKS_NAMES: list[str] = [f"{w}/{n}" for w, n in zip(FILES.week, FILES.sample)]
 print(f"Weeks sample names: '{WEEKS_NAMES}'")
-
-#### Input files for pretrim seqkit stats
 INPUT_FASTQS: list[str] = [f"{PREFIX}/{base}.fastq.gz" for base in WEEKS_NAMES]
 
 #### Output files for pretrim fastqc
 PRETRIM_FASTQC: list[str] = expand("{output}/pretrim/{week_name}_fastqc.html", output=OUTPUT, week_name=WEEKS_NAMES)
+
+#### output files for fastp
+R1 = glob_wildcards(f"{PREFIX}/{{week}}/{{sample}}_L001_R1_001.fastq.gz")
+R2 = glob_wildcards(f"{PREFIX}/{{week}}/{{sample}}_L001_R2_001.fastq.gz")
+R1_TRIMMED: list[str] = [f"{OUTPUT}/trim/{w}/{n}_L001_R1_001.trim.fastq.gz" for w, n in zip(R1.week, R1.sample)]
+R2_TRIMMED: list[str] = [f"{OUTPUT}/trim/{w}/{n}_L001_R2_001.trim.fastq.gz" for w, n in zip(R2.week, R2.sample)]
 
 
 ################################################################
