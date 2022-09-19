@@ -18,7 +18,7 @@ This snakemake 7.14.0 pipeline performs the following steps:
 
 The input files should be placed in: `/home/lauri/Desktop/KITM_fastq_preprocessing/data/<__>/v<__>`, where:
 
-- `<__>` is the name of the batch of input files. It can be named freely but **avoid** the following characters in the directory name: white space (tab, newline or space), `<`, `>`, `|`, `\`, `:`, `(`, `)`, `&`, `;`, `?` and `*`. 
+- `<__>` is the name of the batch of input files. It can be named freely but **avoid** the following characters in the directory name: white space (tab, newline or space), `<`, `>`, `|`, `\`, `:`, `(`, `)`, `&`, `;`, `?` and `*`.
 Examples of valid batch names are: `1`, `v15_16_18`, or `oktober1`.
 - `v<__>` is the directory for the week, e.g. `v15`, `v1` or `v51`. There can be multiple week directories in the batch directory.
 

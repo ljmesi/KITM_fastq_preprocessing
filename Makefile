@@ -10,7 +10,7 @@ CURRENT_CONDA_ENV_NAME = KITM_trimming
 ACTIVATE_CONDA = source $$(conda info --base)/etc/profile.d/conda.sh
 CONDA_ACTIVATE = $(ACTIVATE_CONDA) ; conda activate ; conda activate $(CURRENT_CONDA_ENV_NAME)
 
-DOC_DIR = pandoc
+DOC_DIR = /home/lauri/Desktop/KITM_fastq_preprocessing/pandoc
 
 .PHONY: \
 all \
@@ -45,11 +45,13 @@ clean:
 html:
 	$(ACTIVATE_CONDA) ; conda activate ; conda activate pandoc
 	pandoc \
+	--verbose \
 	--standalone \
-	--css $(DOC_DIR)/css/styling.css \
 	--template $(DOC_DIR)/template.html \
+	--css $(DOC_DIR)/css/styling.css \
 	--toc \
-	--metadata title=Instructions \
+	--metadata title="Instructions for running Fastq preprocessing" \
+	--metadata lang=en \
 	-o documentation/instructions.html \
 	instructions.md
 
