@@ -102,7 +102,7 @@ make
 
 The results will appear in the directory defined by `output` parameter in `config.yml`.
 
-*Tip: Name the output parameter to the same as the input batch directory name.*
+*Tip: The name of the output parameter **must be** the same as the input batch directory name.*
 
 So, e.g. if you have input as following:
 
