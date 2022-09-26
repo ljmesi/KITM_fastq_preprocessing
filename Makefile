@@ -50,10 +50,10 @@ html:
 	--template $(DOC_DIR)/template.html \
 	--css $(DOC_DIR)/css/styling.css \
 	--toc \
-	--metadata title="Instructions for running Fastq preprocessing" \
+	--metadata title="How to run KITM fastq preprocessing" \
 	--metadata lang=en \
-	-o documentation/instructions.html \
-	instructions.md
+	-o documentation/run_KITM_fastq_preprocessing.html \
+	run_KITM_fastq_preprocessing.md
 
 
 ## snakefmt_fix: Fix shortcomings found by snakefmt
