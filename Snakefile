@@ -92,11 +92,10 @@ rule pretrim_seqkit_stats:
         cores=NUM_CORES,
     shell:
         """
-        seqkit stats \
+        (seqkit stats \
         --all \
-        --tabular \
         -j {params.cores} \
-        {input} > {output} &> {log}
+        {input} > {output}) &> {log}
         """
 
 
@@ -140,11 +139,10 @@ rule posttrim_seqkit_stats:
         f"logs/{BATCH_NAME}/posttrim/posttrim_seqkit_stats.log",
     shell:
         """
-        seqkit stats \
+        (seqkit stats \
         --all \
-        --tabular \
         -j {params.cores} \
-        {input} > {output} &> {log}
+        {input} > {output}) &> {log}
         """
 
 
