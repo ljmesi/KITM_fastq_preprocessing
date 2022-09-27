@@ -53,10 +53,10 @@ print(f'Number of cores: {NUM_CORES}')
 rule all:
     input:
         PRETRIM_FASTQC,
-        f"{OUTPUT}/pretrim/pretrim_seqkit_stats.tsv",
+        f"{OUTPUT}/pretrim/pretrim_seqkit_stats.txt",
         R1_TRIMMED,
         R2_TRIMMED,
-        f"{OUTPUT}/posttrim/posttrim_seqkit_stats.tsv",
+        f"{OUTPUT}/posttrim/posttrim_seqkit_stats.txt",
         expand("{output}/posttrim/{week_name}.trim_fastqc.html", output=OUTPUT, week_name=WEEKS_NAMES),
         f"{OUTPUT}/multiqc_report.html",
 
@@ -85,7 +85,7 @@ rule pretrim_seqkit_stats:
     input:
         INPUT_FASTQS,
     output:
-        f"{OUTPUT}/pretrim/pretrim_seqkit_stats.tsv",
+        f"{OUTPUT}/pretrim/pretrim_seqkit_stats.txt",
     log:
         f"logs/{BATCH_NAME}/pretrim/pretrim_seqkit_stats.log",
     params:
@@ -132,7 +132,7 @@ rule posttrim_seqkit_stats:
     input:
         R1_TRIMMED + R2_TRIMMED,
     output:
-        f"{OUTPUT}/posttrim/posttrim_seqkit_stats.tsv",
+        f"{OUTPUT}/posttrim/posttrim_seqkit_stats.txt",
     params:
         cores=NUM_CORES,
     log:
